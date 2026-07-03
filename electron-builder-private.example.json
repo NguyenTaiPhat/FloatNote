@@ -1,0 +1,37 @@
+{
+    "appId": "com.floatnote.app.private",
+    "productName": "FloatNote Private",
+    "extends": null,
+    "files": [
+        "dist/**/*",
+        "electron/**/*",
+        "assets/**/*",
+        "package.json"
+    ],
+    "directories": {
+        "buildResources": "assets"
+    },
+    "publish": [
+        {
+            "provider": "github",
+            "owner": "YOUR_GITHUB_USERNAME",
+            "repo": "floatnote-private",
+            "private": true,
+            "releaseType": "release"
+        }
+    ],
+    "win": {
+        "target": [
+            {
+                "target": "nsis",
+                "arch": [
+                    "x64"
+                ]
+            }
+        ],
+        "icon": "assets/icon.ico",
+        "publish": [
+            "github"
+        ]
+    }
+}

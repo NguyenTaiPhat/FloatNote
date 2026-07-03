@@ -1,0 +1,73 @@
+name: Release FloatNote
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build:win
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract version from tag
+        id: get_version
+        shell: bash
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            release/*.exe
+            release/*.yml
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          name: FloatNote v${{ steps.get_version.outputs.VERSION }}
+          body: |
+            ## FloatNote v${{ steps.get_version.outputs.VERSION }}
+
+            ### Installation
+            
+            Download `FloatNote-Setup-${{ steps.get_version.outputs.VERSION }}.exe` and run.
+
+            ### Build from Source
+            
+            ```bash
+            git clone https://github.com/${{ github.repository }}.git
+            cd floatnote
+            npm install
+            npm run build:win
+            ```
+
+            ### Notes
+            
+            - This is a **public build** without auto-update
+            - Windows only (x64, ia32)
+            - No telemetry, fully offline
+
+            ---
+            **Full Changelog**: https://github.com/${{ github.repository }}/compare/v${{ steps.get_version.outputs.VERSION }}...v${{ steps.get_version.outputs.VERSION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
