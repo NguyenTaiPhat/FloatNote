@@ -1,81 +1,111 @@
 # FloatNote
-## ✨ Features
 
-### 🎴 Smart Cards System
-Every saved item automatically transforms into a premium interactive card:
-- **Note Cards** - Rich text notes with markdown support
-- **Website Cards** - Auto-fetch metadata, favicon, OG images
-- **GitHub Cards** - Repository info, stars, forks, topics, README preview
-- **YouTube Cards** - Thumbnail, duration, channel, views, watch later
-- **Movie Cards** - TMDB/IMDb integration, ratings, posters, streaming links
-- **Spotify Cards** - Album covers, artists, track counts
-- And more: Reddit, Medium, PDF, Images, Files, Todo, Countdown, Calendar
+**Bộ Não Thứ Hai Cho Desktop Của Bạn**
 
-### 🔍 Auto Link Detection
-Paste any URL and FloatNote automatically:
-- Detects the service type
-- Fetches complete metadata
-- Generates beautiful card layout
-- Caches everything locally
+FloatNote là ứng dụng desktop mã nguồn mở giúp bạn tổ chức mọi thứ thành các thẻ tương tác thông minh. Kết hợp ghi chú, bookmark, knowledge base, widgets và AI assistant trong một workspace đẹp mắt.
 
-### 🤖 AI Understanding (Local First)
-AI automatically:
-- Summarizes content
-- Generates relevant tags
-- Finds categories
-- Extracts keywords
-- Suggests related cards
-- Creates connections
+![FloatNote](https://via.placeholder.com/1200x600/0a0a0a/3b82f6?text=FloatNote)
+
+---
+
+## 🔒 Bảo Mật & Riêng Tư
+
+⭐ **100% Mã Nguồn Mở** - Toàn bộ code có thể kiểm tra và đóng góp tại [GitHub](https://github.com/NguyenTaiPhat/FloatNote)
+
+🔐 **Không Thu Thập Dữ Liệu** - Không có telemetry, analytics, hoặc tracking bất kỳ
+
+💾 **Dữ Liệu Lưu Local** - Tất cả notes, bookmarks, settings được lưu trên máy bạn
+
+🚫 **Không Có Mã Độc** - Code được public hoàn toàn, có thể tự build và kiểm tra
+
+🔑 **API Keys An Toàn** - Các API keys (TMDB, GitHub, YouTube) bạn nhập được lưu trong:
+- **Windows:** `%APPDATA%/floatnote/config.json`
+- Chỉ ở local, không gửi đi đâu
+- Bạn tự đăng ký và quản lý keys của mình
+
+🗄️ **Database Offline** - SQLite database (`floatnote.db`) lưu local tại:
+- **Dev:** `./floatnote.db`
+- **Production:** `%APPDATA%/floatnote/`
+
+---
+
+## ✨ Tính Năng
+
+### 🎴 Hệ Thống Thẻ Thông Minh
+Mọi thứ bạn lưu đều tự động chuyển thành thẻ tương tác:
+- **Thẻ Ghi Chú** - Rich text notes với markdown support
+- **Thẻ Website** - Tự động fetch metadata, favicon, OG images
+- **Thẻ GitHub** - Thông tin repo, stars, forks, topics, preview README
+- **Thẻ YouTube** - Thumbnail, duration, channel, views, watch later
+- **Thẻ Phim** - Tích hợp TMDB/IMDb, ratings, posters, streaming links
+- **Thẻ Spotify** - Album covers, artists, track counts
+- Và nhiều hơn: Reddit, Medium, PDF, Images, Files, Todo, Countdown, Calendar
+
+### 🔍 Tự Động Nhận Diện Link
+Paste bất kỳ URL nào, FloatNote tự động:
+- Nhận diện loại service
+- Fetch toàn bộ metadata
+- Tạo card layout đẹp
+- Cache mọi thứ offline
+
+### 🤖 AI Hiểu Nội Dung (Local First)
+AI tự động:
+- Tóm tắt nội dung
+- Tạo tags phù hợp
+- Tìm categories
+- Trích xuất keywords
+- Gợi ý thẻ liên quan
+- Tạo connections
 
 ### 🌐 Graph View
-Visualize connections between cards:
+Visualize mối liên hệ giữa các thẻ:
 - Interactive node graph
-- Zoom and pan
-- Relationship strength
-- Smart suggestions
+- Zoom và pan
+- Độ mạnh relationship
+- Gợi ý thông minh
 
 ### 🎨 Floating Widgets
-Transform any card into a desktop widget:
+Biến bất kỳ thẻ nào thành widget trên desktop:
 - Always on top
 - Custom opacity
 - Compact/Normal/Expanded modes
-- Drag anywhere
-- Multiple monitors support
+- Kéo thả tùy ý
+- Hỗ trợ nhiều màn hình
 
 ### 📌 Edge Dock
-Hidden sidebar that expands on hover:
-- Quick access to pinned cards
+Sidebar ẩn mở ra khi hover:
+- Quick access pinned cards
 - Recent notes
 - Bookmarks
 - Widgets
 - Quick actions
 
 ### ⚡ Global Search (Alt + Space)
-Instant fuzzy search across:
-- All cards
-- Notes content
+Tìm kiếm instant fuzzy search:
+- Tất cả cards
+- Nội dung notes
 - Bookmarks
 - Tags
 - Projects
 - History
 
 ### ⌨️ Command Palette (Ctrl + Shift + P)
-Execute everything by keyboard:
-- Create new cards
-- Switch workspaces
-- Change views
-- Run commands
+Thực thi mọi thứ bằng bàn phím:
+- Tạo cards mới
+- Chuyển workspaces
+- Đổi views
+- Chạy commands
 
 ### 👻 Boss Mode (Ctrl + Alt + B)
-Instantly hide everything:
-- All windows
+Ẩn mọi thứ ngay lập tức:
+- Tất cả windows
 - Floating widgets
 - Edge dock
-- Optional PIN protection
+- Tùy chọn PIN protection
 - Windows Hello support
 
 ### 🏢 Workspaces
-Organize by context:
+Tổ chức theo ngữ cảnh:
 - Personal
 - Coding
 - Movies
@@ -83,156 +113,147 @@ Organize by context:
 - Business
 - Photography
 
-Each workspace has independent cards, widgets, and layouts.
+Mỗi workspace có cards, widgets, layouts riêng.
 
 ### 📊 Timeline & History
-- Track every change
-- Visual timeline
-- Restore any version
+- Theo dõi mọi thay đổi
+- Timeline trực quan
+- Restore bất kỳ version nào
 - Auto backup system
 
-## 🚀 Quick Start
+---
 
+## 🚀 Cài Đặt & Sử Dụng
+
+### Tải Về
+
+**Option 1: Tải Installer (Khuyên Dùng)**
+- Vào [GitHub Releases](https://github.com/NguyenTaiPhat/FloatNote/releases/latest)
+- Tải `FloatNote-Setup-x.x.x.exe`
+- Chạy installer
+
+**Option 2: Build Từ Source**
 ```bash
-# Install dependencies
+# Clone repo
+git clone https://github.com/NguyenTaiPhat/FloatNote.git
+cd FloatNote
+
+# Cài dependencies
 npm install
 
-# Run development mode
+# Chạy development mode
 npm run dev
 
-# Build for production
-npm run build
-
-# Build desktop app
-npm run build:electron
+# Build production
+npm run build:win
 ```
 
-## 🎯 Usage
+Installer sẽ nằm trong folder `release/`
 
-### Creating Cards
+### Cấu Hình API Keys (Tùy Chọn)
 
-**From URL:**
+Để dùng một số tính năng nâng cao, bạn có thể đăng ký API keys miễn phí:
+
+**TMDB (cho thẻ phim):**
+1. Đăng ký tại: https://www.themoviedb.org/settings/api
+2. Settings → API Keys → Paste key
+
+**GitHub (cho thẻ GitHub repo):**
+1. GitHub → Settings → Developer settings → Personal access tokens
+2. Tạo token với scope `public_repo`
+3. Settings → API Keys → Paste token
+
+**YouTube (cho thẻ YouTube video):**
+1. Google Cloud Console → Create API Key
+2. Enable YouTube Data API v3
+3. Settings → API Keys → Paste key
+
+**Lưu ý:** Tất cả keys được lưu local tại `%APPDATA%/floatnote/config.json`, không gửi đi đâu.
+
+---
+
+## 🎯 Sử Dụng
+
+### Tạo Thẻ
+
+**Từ URL:**
 ```
 Paste: https://github.com/electron/electron
-Result: Premium GitHub card with full metadata
+Kết quả: Thẻ GitHub với đầy đủ metadata
 ```
 
-**From Text:**
+**Từ Text:**
 ```
-Type: Remember to update documentation
-Result: Note card with timestamp
+Nhập: Nhớ update documentation
+Kết quả: Thẻ ghi chú với timestamp
 ```
 
-**Movie Search:**
+**Tìm Phim:**
 ```
 Command Palette → "Add Movie" → "Fight Club"
-Result: Movie card with poster, rating, genres
+Kết quả: Thẻ phim với poster, rating, thể loại
 ```
 
-### Keyboard Shortcuts
+### Phím Tắt
 
-| Shortcut | Action |
-|----------|--------|
+| Phím Tắt | Chức Năng |
+|----------|-----------|
 | `Alt + Space` | Global Search |
 | `Ctrl + Shift + P` | Command Palette |
 | `Ctrl + Alt + B` | Boss Mode |
-| `Ctrl + N` | New Card |
-| `Ctrl + S` | Save |
-| `Delete` | Delete Card |
-| `ESC` | Close Modal |
+| `Ctrl + N` | Thẻ Mới |
+| `Ctrl + S` | Lưu |
+| `Delete` | Xóa Thẻ |
+| `ESC` | Đóng Modal |
 
-## 🛠️ Architecture
+---
 
-```
-floatnote/
-├── electron/              # Electron main process
-│   ├── main.js           # App entry point
-│   └── preload.js        # Context bridge
-├── src/
-│   ├── features/         # Feature modules
-│   │   ├── cards/        # Card system
-│   │   │   ├── extractors/
-│   │   │   ├── renderers/
-│   │   │   ├── CardDetector.ts
-│   │   │   └── CardFactory.ts
-│   │   ├── search/       # Global search
-│   │   └── command-palette/
-│   ├── shared/           # UI components
-│   │   ├── Button.tsx
-│   │   ├── Input.tsx
-│   │   ├── Modal.tsx
-│   │   └── Card.tsx
-│   ├── layouts/          # App layouts
-│   ├── pages/            # Main pages
-│   ├── store/            # Zustand stores
-│   ├── db/               # SQLite database
-│   ├── lib/              # Utilities
-│   └── App.tsx
-└── package.json
-```
-
-## 🎨 Design System
-
-**Colors:**
-- Background: `#0a0a0a`
-- Surface: `#1e1e1e`
-- Primary: `#3b82f6`
-- Accent: Purple, Pink, Orange, Green, Yellow
-
-**Typography:**
-- System fonts
-- -apple-system, BlinkMacSystemFont, Segoe UI
-
-**Border Radius:**
-- Components: `18px`
-- Cards: `18px`
-- Buttons: `12px`
-
-**Animations:**
-- 60 FPS smooth transitions
-- Framer Motion powered
-- Spring physics
-
-## 🔧 Configuration
-
-### API Keys
-
-Edit `src/lib/constants.ts`:
-
-```typescript
-export const TMDB_API_KEY = 'your_tmdb_api_key';
-export const GITHUB_TOKEN = 'your_github_token';
-```
-
-### Database
-
-SQLite database stored at:
-- Development: `./floatnote.db`
-- Production: `%APPDATA%/floatnote/floatnote.db`
-
-## 📦 Tech Stack
+## 🛠️ Tech Stack
 
 - **Framework:** Electron 29
 - **UI:** React 18 + TypeScript
 - **Styling:** TailwindCSS 3
 - **Animations:** Framer Motion 11
 - **State:** Zustand 4
-- **Database:** better-sqlite3 9
+- **Database:** better-sqlite3 9 (Local SQLite)
 - **Search:** Fuse.js 7
 - **Icons:** Lucide React
 
-## 🎯 Performance
+---
 
-- Cold launch: <1 second
+## 🎨 Design
+
+**Colors:**
+- Background: `#0a0a0a`
+- Surface: `#1e1e1e`
+- Primary: `#3b82f6`
+- Accents: Purple, Pink, Orange, Green, Yellow
+
+**Typography:**
+- System fonts
+- -apple-system, BlinkMacSystemFont, Segoe UI
+
+**Animations:**
+- 60 FPS smooth transitions
+- Framer Motion powered
+- Spring physics
+
+---
+
+## ⚡ Performance
+
+- Cold launch: <1 giây
 - RAM usage: <150MB
-- Supports 10,000+ cards
+- Hỗ trợ 10,000+ thẻ
 - 60 FPS animations
 - Instant search
+
+---
 
 ## 🔜 Roadmap
 
 - [ ] Plugin system
-- [ ] Cloud sync
+- [ ] Cloud sync (optional, self-hosted)
 - [ ] Git sync
 - [ ] Browser extension
 - [ ] Mobile apps (iOS/Android)
@@ -241,13 +262,31 @@ SQLite database stored at:
 - [ ] AI assistant chat
 - [ ] Multi-window mode
 
+---
+
+## 🤝 Đóng Góp
+
+Mọi đóng góp đều được chào đón! Xem [CONTRIBUTING.md](CONTRIBUTING.md) để biết thêm chi tiết.
+
+### Cách Đóng Góp:
+
+1. Fork repo
+2. Tạo branch: `git checkout -b feature/amazing-feature`
+3. Commit: `git commit -m "feat: add amazing feature"`
+4. Push: `git push origin feature/amazing-feature`
+5. Mở Pull Request
+
+---
+
 ## 📝 License
 
-MIT
+MIT License - Xem [LICENSE](LICENSE)
+
+---
 
 ## 🙏 Credits
 
-Inspired by:
+Lấy cảm hứng từ:
 - Notion
 - Raycast
 - Arc Browser
@@ -258,7 +297,25 @@ Inspired by:
 
 ---
 
-**Built with ❤️ for productivity enthusiasts**
-=======
-Mã Nguồn Free
->>>>>>> c8dc6ee9e2952824e2e1fd18179e8a777a5518ce
+## 💬 Support
+
+- **Issues:** [GitHub Issues](https://github.com/NguyenTaiPhat/FloatNote/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/NguyenTaiPhat/FloatNote/discussions)
+
+---
+
+## ⚠️ Disclaimer
+
+FloatNote là project mã nguồn mở, hoàn toàn miễn phí. Không có quảng cáo, không thu thập dữ liệu, không có mã độc. 
+
+Nếu bạn lo ngại về bảo mật, bạn có thể:
+- Đọc toàn bộ source code tại GitHub
+- Build từ source để kiểm tra
+- Review dependencies trong `package.json`
+- Kiểm tra network traffic (app không gửi dữ liệu đi đâu)
+
+---
+
+**Made with ❤️ for productivity enthusiasts**
+
+**Vietnamese Version** | [English Version](README.en.md)
