@@ -1,11 +1,4 @@
 # FloatNote
-
-**Your Second Brain for Desktop**
-
-FloatNote is a premium desktop application that transforms everything you save into intelligent interactive cards. Combining notes, bookmarks, knowledge base, widgets, and AI assistant in one beautiful workspace.
-
-![FloatNote](https://via.placeholder.com/1200x600/0a0a0a/3b82f6?text=FloatNote)
-
 ## ✨ Features
 
 ### 🎴 Smart Cards System
@@ -266,3 +259,6 @@ Inspired by:
 ---
 
 **Built with ❤️ for productivity enthusiasts**
+=======
+Mã Nguồn Free
+>>>>>>> c8dc6ee9e2952824e2e1fd18179e8a777a5518ce
