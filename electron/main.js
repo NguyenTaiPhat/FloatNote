@@ -132,7 +132,21 @@ electron_1.app.whenReady().then(() => {
     (0, settings_1.setupSettingsHandlers)();
     // Shell handlers
     electron_1.ipcMain.handle('shell:openExternal', async (_event, url) => {
-        await electron_1.shell.openExternal(url);
+        // Validate URL to prevent opening folders instead of web links
+        if (!url)
+            return;
+        // Ensure URL has proper protocol
+        const urlLower = url.toLowerCase().trim();
+        if (!urlLower.startsWith('http://') && !urlLower.startsWith('https://')) {
+            console.warn('Invalid URL protocol, skipping:', url);
+            return;
+        }
+        try {
+            await electron_1.shell.openExternal(url);
+        }
+        catch (error) {
+            console.error('Failed to open external URL:', error);
+        }
     });
     createMainWindow();
     // Setup auto-updater

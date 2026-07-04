@@ -149,7 +149,21 @@ app.whenReady().then(() => {
 
     // Shell handlers
     ipcMain.handle('shell:openExternal', async (_event, url: string) => {
-        await shell.openExternal(url);
+        // Validate URL to prevent opening folders instead of web links
+        if (!url) return;
+
+        // Ensure URL has proper protocol
+        const urlLower = url.toLowerCase().trim();
+        if (!urlLower.startsWith('http://') && !urlLower.startsWith('https://')) {
+            console.warn('Invalid URL protocol, skipping:', url);
+            return;
+        }
+
+        try {
+            await shell.openExternal(url);
+        } catch (error) {
+            console.error('Failed to open external URL:', error);
+        }
     });
 
     createMainWindow();

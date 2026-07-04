@@ -1,6 +1,6 @@
 {
   "name": "floatnote",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Premium desktop second brain with intelligent cards (Windows only)",
   "main": "electron/main.js",
   "author": "FloatNote Team",
