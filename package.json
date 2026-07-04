@@ -12,7 +12,7 @@
     "dev:electron": "wait-on http://localhost:5173 && node scripts/build-electron.js && electron .",
     "build": "tsc && vite build && node scripts/build-electron.js",
     "build:electron": "electron-builder --win",
-    "build:win": "npm run build && electron-builder --win",
+    "build:win": "npm run build && electron-builder --win --config .electron-builder.js",
     "build:private": "npm run build && electron-builder --win --config electron-builder-private.json",
     "publish:private": "npm run build && electron-builder --win --config electron-builder-private.json --publish always",
     "preview": "vite preview",
@@ -22,7 +22,8 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,css,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css,md}\"",
     "clean": "rimraf dist electron/**/*.js",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "analyze": "npx asar list dist/win-unpacked/resources/app.asar | findstr /i node_modules | wc -l"
   },
   "dependencies": {
     "better-sqlite3": "^11.10.0",
@@ -60,6 +61,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "postcss": "^8.4.38",
+    "prettier": "^3.2.5",
+    "rimraf": "^5.0.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
@@ -71,9 +74,25 @@
     "productName": "FloatNote",
     "files": [
       "dist/**/*",
-      "electron/**/*",
+      "electron/**/*.js",
       "assets/**/*",
-      "package.json"
+      "package.json",
+      "!electron/**/*.ts",
+      "!**/node_modules/**/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/**/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/**/*.d.ts",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+      "!.editorconfig",
+      "!**/._*",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+      "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+      "!**/{appveyor.yml,.travis.yml,circle.yml}",
+      "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}"
+    ],
+    "asarUnpack": [
+      "node_modules/better-sqlite3/**/*",
+      "node_modules/sharp/**/*"
     ],
     "directories": {
       "buildResources": "assets"
@@ -95,6 +114,9 @@
         }
       ],
       "icon": "assets/icon.ico"
-    }
+    },
+    "compression": "maximum",
+    "removePackageScripts": true,
+    "npmRebuild": true
   }
 }
