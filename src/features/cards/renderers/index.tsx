@@ -4,7 +4,6 @@ import { GitHubCardRenderer } from './GitHubCardRenderer';
 import { YouTubeCardRenderer } from './YouTubeCardRenderer';
 import { MovieCardRenderer } from './MovieCardRenderer';
 import { WebsiteCardRenderer } from './WebsiteCardRenderer';
-import { SpotifyCardRenderer } from './SpotifyCardRenderer';
 
 interface Props {
     card: CardType;
@@ -23,11 +22,9 @@ export function SmartCardRenderer({ card, onClick }: Props) {
             return <MovieCardRenderer card={card as any} onClick={onClick} />;
         case 'website':
             return <WebsiteCardRenderer card={card as any} onClick={onClick} />;
-        case 'spotify':
-            return <SpotifyCardRenderer card={card as any} onClick={onClick} />;
         default:
             return <NoteCardRenderer card={card as any} onClick={onClick} />;
     }
 }
 
-export { NoteCardRenderer, GitHubCardRenderer, YouTubeCardRenderer, MovieCardRenderer, WebsiteCardRenderer, SpotifyCardRenderer };
+export { NoteCardRenderer, GitHubCardRenderer, YouTubeCardRenderer, MovieCardRenderer, WebsiteCardRenderer };

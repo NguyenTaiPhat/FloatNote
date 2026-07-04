@@ -1,4 +1,4 @@
-import { Minimize, Maximize, X, Minus } from 'lucide-react';
+import { Maximize, X, Minus } from 'lucide-react';
 import { IconButton } from '@shared/IconButton';
 
 export function TitleBar() {

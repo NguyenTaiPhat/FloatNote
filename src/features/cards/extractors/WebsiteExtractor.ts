@@ -12,7 +12,6 @@ export class WebsiteExtractor {
     static async extract(url: string): Promise<Partial<WebsiteCard>> {
         try {
             const metadata = await this.fetchMetadata(url);
-            const domain = this.extractDomain(url);
 
             return {
                 type: 'website',

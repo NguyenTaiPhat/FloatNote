@@ -3,8 +3,7 @@ import {
     GitHubExtractor,
     YouTubeExtractor,
     WebsiteExtractor,
-    MovieExtractor,
-    SpotifyExtractor
+    MovieExtractor
 } from './extractors';
 import type { Card } from '@lib/types';
 import { generateId } from '@lib/utils';
@@ -35,13 +34,6 @@ export class CardFactory {
                     if (detection.url) {
                         const youtubeData = await YouTubeExtractor.extract(detection.url);
                         cardData = { ...cardData, ...youtubeData };
-                    }
-                    break;
-
-                case 'spotify':
-                    if (detection.url) {
-                        const spotifyData = await SpotifyExtractor.extract(detection.url);
-                        cardData = { ...cardData, ...spotifyData };
                     }
                     break;
 

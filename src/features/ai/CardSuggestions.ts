@@ -35,9 +35,6 @@ export class CardSuggestions {
         if (card.type === 'movie' || card.type === 'youtube' && text.includes('entertainment')) {
             return 'entertainment';
         }
-        if (card.type === 'spotify') {
-            return 'music';
-        }
         if (text.includes('work') || text.includes('business')) {
             return 'business';
         }

@@ -19,7 +19,7 @@ export function AppearanceSettings() {
         applyPrimaryColor(savedColor);
 
         // Watch system theme changes
-        const unwatch = watchSystemTheme((systemTheme) => {
+        const unwatch = watchSystemTheme((_systemTheme) => {
             if (theme === 'system') {
                 applyTheme('system');
             }

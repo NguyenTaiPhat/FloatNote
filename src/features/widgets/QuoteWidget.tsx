@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Quote, RefreshCw } from 'lucide-react';
 import { IconButton } from '@shared/IconButton';
 
@@ -9,19 +9,39 @@ interface QuoteData {
 
 export function QuoteWidget() {
     const [quote, setQuote] = useState<QuoteData>({
-        text: 'The only way to do great work is to love what you do.',
-        author: 'Steve Jobs',
+        text: "The only way to do great work is to love what you do.",
+        author: "Steve Jobs",
     });
 
     const quotes: QuoteData[] = [
-        { text: 'The only way to do great work is to love what you do.', author: 'Steve Jobs' },
-        { text: 'Innovation distinguishes between a leader and a follower.', author: 'Steve Jobs' },
-        { text: 'Design is not just what it looks like. Design is how it works.', author: 'Steve Jobs' },
-        { text: 'Stay hungry, stay foolish.', author: 'Steve Jobs' },
         {
-            text: 'Code is like humor. When you have to explain it, it's bad.', author: 'Cory House' },
-    { text: 'First, solve the problem. Then, write the code.', author: 'John Johnson' },
-    { text: 'The best way to predict the future is to invent it.', author: 'Alan Kay' },
+            text: "The only way to do great work is to love what you do.",
+            author: "Steve Jobs"
+        },
+        {
+            text: "Innovation distinguishes between a leader and a follower.",
+            author: "Steve Jobs"
+        },
+        {
+            text: "Design is not just what it looks like. Design is how it works.",
+            author: "Steve Jobs"
+        },
+        {
+            text: "Stay hungry, stay foolish.",
+            author: "Steve Jobs"
+        },
+        {
+            text: "Code is like humor. When you have to explain it, it's bad.",
+            author: "Cory House"
+        },
+        {
+            text: "First, solve the problem. Then, write the code.",
+            author: "John Johnson"
+        },
+        {
+            text: "The best way to predict the future is to invent it.",
+            author: "Alan Kay"
+        }
     ];
 
     const getRandomQuote = () => {

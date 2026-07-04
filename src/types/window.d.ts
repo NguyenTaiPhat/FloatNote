@@ -10,6 +10,15 @@ export interface ElectronAPI {
     toggleBossMode: () => void;
     onGlobalSearch: (callback: () => void) => void;
     onCommandPalette: (callback: () => void) => void;
+    getAppVersion?: () => Promise<string>;
+    checkForUpdates?: () => void;
+    installUpdate?: () => void;
+    setAutoUpdate?: (enabled: boolean) => void;
+    onUpdateAvailable?: (callback: (info: any) => void) => void;
+    onUpdateNotAvailable?: (callback: () => void) => void;
+    onDownloadProgress?: (callback: (progress: number) => void) => void;
+    onUpdateDownloaded?: (callback: (info: any) => void) => void;
+    onUpdateError?: (callback: (error: string) => void) => void;
 }
 
 export interface API {

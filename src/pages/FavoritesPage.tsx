@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Star, Grid, List, Clock } from 'lucide-react';
 import { useCardStore, useUIStore, useWorkspaceStore } from '@/store';
 import { SmartCardRenderer } from '@features/cards/renderers';

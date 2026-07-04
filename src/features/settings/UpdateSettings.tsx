@@ -56,7 +56,7 @@ export function UpdateSettings() {
         });
 
         // Update not available
-        window.electron.onUpdateNotAvailable(() => {
+        window.electron.onUpdateNotAvailable?.(() => {
             setStatus('not-available');
             setUpdateInfo(null);
         });
@@ -68,7 +68,7 @@ export function UpdateSettings() {
         });
 
         // Update downloaded
-        window.electron.onUpdateDownloaded((info: UpdateInfo) => {
+        window.electron.onUpdateDownloaded?.((info: UpdateInfo) => {
             setStatus('downloaded');
             setUpdateInfo(info);
         });

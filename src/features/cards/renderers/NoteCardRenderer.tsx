@@ -1,4 +1,4 @@
-import { FileText, Star, Archive, Trash2, X, Edit2, Save } from 'lucide-react';
+import { FileText, Star, Archive, Trash2, Edit2, Save } from 'lucide-react';
 import type { NoteCard } from '@lib/types';
 import { Card } from '@shared/Card';
 import { IconButton } from '@shared/IconButton';
@@ -245,8 +245,7 @@ export function NoteCardRenderer({ card, onClick }: Props) {
 
                             {/* Content */}
                             <div className="prose prose-sm max-w-none">
-                                {/* Images */}
-                                {card.metadata?.images && Array.isArray(card.metadata.images) && card.metadata.images.length > 0 && (
+                                {card.metadata?.images && Array.isArray(card.metadata.images) && card.metadata.images.length > 0 ? (
                                     <div className="mb-4 grid grid-cols-2 gap-2">
                                         {(card.metadata.images as string[]).map((img, index) => (
                                             <img
@@ -257,7 +256,7 @@ export function NoteCardRenderer({ card, onClick }: Props) {
                                             />
                                         ))}
                                     </div>
-                                )}
+                                ) : null}
 
                                 {/* Text Content */}
                                 <div className="p-4 bg-surface rounded-xl min-h-[200px]">

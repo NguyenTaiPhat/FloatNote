@@ -3,7 +3,7 @@ import { cn } from '@lib/utils';
 
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'default' | 'ghost' | 'primary' | 'danger';
-    size?: 'sm' | 'md' | 'lg';
+    size?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
@@ -18,6 +18,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         };
 
         const sizes = {
+            xs: 'w-5 h-5 text-xs',
             sm: 'w-7 h-7 text-sm',
             md: 'w-9 h-9 text-base',
             lg: 'w-11 h-11 text-lg',

@@ -20,11 +20,6 @@ export class CardDetector {
             return { type: 'youtube', url: trimmed, confidence: 1.0 };
         }
 
-        // Spotify
-        if (this.isSpotifyUrl(trimmed)) {
-            return { type: 'spotify', url: trimmed, confidence: 1.0 };
-        }
-
         // Reddit
         if (this.isRedditUrl(trimmed)) {
             return { type: 'reddit', url: trimmed, confidence: 1.0 };
@@ -59,10 +54,6 @@ export class CardDetector {
 
     private static isYouTubeUrl(url: string): boolean {
         return /(?:youtube\.com\/watch\?v=|youtu\.be\/)[\w-]+/.test(url);
-    }
-
-    private static isSpotifyUrl(url: string): boolean {
-        return /spotify\.com\/(album|track|playlist)\/[\w]+/.test(url);
     }
 
     private static isRedditUrl(url: string): boolean {

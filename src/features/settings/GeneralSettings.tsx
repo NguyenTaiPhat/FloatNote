@@ -4,7 +4,7 @@ import { Button } from '@shared/Button';
 import { Select } from '@shared/Select';
 import { toast } from '@shared/Toast';
 import { cn } from '@lib/utils';
-import { useTranslation, type Locale } from '@lib/i18n';
+import { useTranslation } from '@lib/i18n';
 
 export function GeneralSettings() {
     const { locale, setLocale, t } = useTranslation();

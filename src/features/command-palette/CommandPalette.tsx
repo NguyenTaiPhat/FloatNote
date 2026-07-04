@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { Command, Plus, Star, Archive, Trash2, Settings, Download } from 'lucide-react';
+import { Command, Plus, Star, Archive, Settings, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Input } from '@shared/Input';
-import { useCardStore, useUIStore } from '@/store';
+import { useUIStore } from '@/store';
 
 interface Props {
     isOpen: boolean;
@@ -108,7 +108,7 @@ export function CommandPalette({ isOpen, onClose }: Props) {
                                         <div className="px-3 py-1 text-xs font-semibold text-text-tertiary uppercase">
                                             {category}
                                         </div>
-                                        {items.map((cmd, index) => {
+                                        {items.map((cmd) => {
                                             const globalIndex = filtered.indexOf(cmd);
                                             return (
                                                 <button

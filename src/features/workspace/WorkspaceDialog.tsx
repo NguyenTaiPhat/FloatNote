@@ -13,7 +13,7 @@ interface Props {
 export function WorkspaceDialog({ isOpen, onClose }: Props) {
     const { addWorkspace } = useWorkspaceStore();
     const [name, setName] = useState('');
-    const [selectedColor, setSelectedColor] = useState(WORKSPACE_COLORS[0].value);
+    const [selectedColor, setSelectedColor] = useState<string>(WORKSPACE_COLORS[0].value);
     const [selectedType, setSelectedType] = useState<typeof WORKSPACE_TYPES[number]>('personal');
     const [description, setDescription] = useState('');
     const [loading, setLoading] = useState(false);

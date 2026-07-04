@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Key, Eye, EyeOff, Save, AlertCircle, CheckCircle } from 'lucide-react';
 import { Button } from '@shared/Button';
-import { Input } from '@shared/Input';
 import { openExternal } from '@lib/external-link';
 import { useTranslation } from '@lib/i18n';
 

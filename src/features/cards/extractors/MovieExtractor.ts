@@ -30,7 +30,7 @@ export class MovieExtractor {
         }
     }
 
-    private static async searchMovie(title: string): Promise<any> {
+    private static async searchMovie(_title: string): Promise<any> {
         // Mock data - replace with TMDB API
         return {
             id: 550,

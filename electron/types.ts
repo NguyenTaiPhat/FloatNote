@@ -6,7 +6,6 @@ export type CardType =
     | 'website'
     | 'github'
     | 'youtube'
-    | 'spotify'
     | 'movie'
     | 'tv'
     | 'reddit'

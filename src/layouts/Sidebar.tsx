@@ -37,7 +37,7 @@ export function Sidebar() {
     if (isSidebarCollapsed) {
         return (
             <aside className="w-16 bg-surface border-r border-border flex flex-col items-center py-4 gap-2">
-                <Tooltip content="Expand Sidebar" side="right">
+                <Tooltip content="Expand Sidebar" position="right">
                     <IconButton variant="ghost" size="sm" onClick={toggleSidebar}>
                         <Folder size={18} />
                     </IconButton>

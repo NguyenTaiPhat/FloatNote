@@ -3,7 +3,6 @@ export const CARD_TYPES = [
     'website',
     'github',
     'youtube',
-    'spotify',
     'movie',
     'tv',
     'reddit',

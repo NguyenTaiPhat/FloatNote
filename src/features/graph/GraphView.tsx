@@ -3,7 +3,7 @@ import ForceGraph2D from 'react-force-graph-2d';
 import { useCardStore } from '@/store';
 import { Card as CardType } from '@lib/types';
 import { IconButton } from '@shared/IconButton';
-import { ZoomIn, ZoomOut, Maximize2, FileText, Github, Music, Film, Globe } from 'lucide-react';
+import { ZoomIn, ZoomOut, Maximize2 } from 'lucide-react';
 
 interface Node {
     id: string;
@@ -74,7 +74,6 @@ export function GraphView() {
             note: '#3b82f6',
             github: '#333333',
             youtube: '#FF0000',
-            spotify: '#1DB954',
             movie: '#f59e0b',
             website: '#6366f1',
         };
@@ -84,9 +83,8 @@ export function GraphView() {
     const getIconByType = (type: string): string => {
         const icons: Record<string, string> = {
             note: '📝',
-            github: '🐙', // GitHub Octocat emoji as fallback
+            github: '🐙',
             youtube: '▶️',
-            spotify: '🎵',
             movie: '🎬',
             website: '🌐',
         };
@@ -103,9 +101,6 @@ export function GraphView() {
         }
         if (card.type === 'movie' && card.metadata?.poster) {
             return card.metadata.poster as string;
-        }
-        if (card.type === 'spotify' && (card.metadata as any)?.cover) {
-            return (card.metadata as any).cover;
         }
         if (card.type === 'website' && card.metadata?.favicon) {
             return card.metadata.favicon as string;
@@ -175,7 +170,7 @@ export function GraphView() {
             <div className="absolute bottom-4 left-4 z-10 glass p-4 rounded-xl">
                 <h3 className="text-xs font-semibold text-text-primary mb-2">Card Types</h3>
                 <div className="space-y-1">
-                    {['note', 'github', 'youtube', 'spotify', 'movie', 'website'].map(type => (
+                    {['note', 'github', 'youtube', 'movie', 'website'].map(type => (
                         <div key={type} className="flex items-center gap-2">
                             <div
                                 className="w-3 h-3 rounded-full"
@@ -282,12 +277,6 @@ export function GraphView() {
                             ctx.lineTo(node.x + iconSize * 0.4, node.y);
                             ctx.closePath();
                             ctx.fill();
-                        } else if (node.type === 'spotify' || node.type === 'music') {
-                            // Musical note
-                            ctx.beginPath();
-                            ctx.arc(node.x, node.y + iconSize * 0.2, iconSize * 0.2, 0, 2 * Math.PI);
-                            ctx.fill();
-                            ctx.fillRect(node.x + iconSize * 0.15, node.y - iconSize * 0.4, 2, iconSize * 0.6);
                         } else if (node.type === 'movie') {
                             // Film strip icon
                             const w = iconSize * 0.7;
