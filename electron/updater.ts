@@ -7,9 +7,9 @@ export function setupAutoUpdater(mainWindow: BrowserWindow) {
     autoUpdater.logger = log;
     log.info('App starting...');
 
-    // Disable auto-download initially
+    // Disable auto-download and auto-install
     autoUpdater.autoDownload = false;
-    autoUpdater.autoInstallOnAppQuit = true;
+    autoUpdater.autoInstallOnAppQuit = false;
 
     // Check for updates on app start (after 3 seconds)
     setTimeout(() => {
@@ -32,23 +32,6 @@ export function setupAutoUpdater(mainWindow: BrowserWindow) {
         mainWindow.webContents.send('update-not-available');
     });
 
-    // Event: Download progress
-    autoUpdater.on('download-progress', (progressObj) => {
-        const percent = progressObj.percent;
-        log.info(`Download progress: ${percent.toFixed(2)}%`);
-        mainWindow.webContents.send('download-progress', percent);
-    });
-
-    // Event: Update downloaded
-    autoUpdater.on('update-downloaded', (info) => {
-        log.info('Update downloaded:', info);
-        mainWindow.webContents.send('update-downloaded', {
-            version: info.version,
-            releaseNotes: info.releaseNotes,
-            releaseDate: info.releaseDate,
-        });
-    });
-
     // Event: Error
     autoUpdater.on('error', (error) => {
         log.error('Update error:', error);
@@ -63,28 +46,6 @@ export function setupAutoUpdater(mainWindow: BrowserWindow) {
             log.error('Check for updates error:', error);
             return { error: error.message };
         }
-    });
-
-    // IPC: Download update
-    ipcMain.handle('download-update', async () => {
-        try {
-            return await autoUpdater.downloadUpdate();
-        } catch (error: any) {
-            log.error('Download update error:', error);
-            return { error: error.message };
-        }
-    });
-
-    // IPC: Install update
-    ipcMain.handle('install-update', () => {
-        autoUpdater.quitAndInstall(false, true);
-    });
-
-    // IPC: Set auto-download
-    ipcMain.handle('set-auto-download', (_event, enabled: boolean) => {
-        autoUpdater.autoDownload = enabled;
-        log.info('Auto-download set to:', enabled);
-        return enabled;
     });
 
     // IPC: Get app version

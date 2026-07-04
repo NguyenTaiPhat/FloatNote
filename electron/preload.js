@@ -14,13 +14,9 @@ electron_1.contextBridge.exposeInMainWorld('electron', {
     openExternal: (url) => electron_1.ipcRenderer.invoke('shell:openExternal', url),
     // Updater
     checkForUpdates: () => electron_1.ipcRenderer.invoke('check-for-updates'),
-    installUpdate: () => electron_1.ipcRenderer.invoke('install-update'),
-    setAutoUpdate: (enabled) => electron_1.ipcRenderer.invoke('set-auto-download', enabled),
     getAppVersion: () => electron_1.ipcRenderer.invoke('get-app-version'),
     onUpdateAvailable: (callback) => electron_1.ipcRenderer.on('update-available', (_event, info) => callback(info)),
     onUpdateNotAvailable: (callback) => electron_1.ipcRenderer.on('update-not-available', callback),
-    onDownloadProgress: (callback) => electron_1.ipcRenderer.on('download-progress', (_event, percent) => callback(percent)),
-    onUpdateDownloaded: (callback) => electron_1.ipcRenderer.on('update-downloaded', (_event, info) => callback(info)),
     onUpdateError: (callback) => electron_1.ipcRenderer.on('update-error', (_event, error) => callback(error)),
 });
 electron_1.contextBridge.exposeInMainWorld('api', {

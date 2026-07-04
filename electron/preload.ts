@@ -15,13 +15,9 @@ contextBridge.exposeInMainWorld('electron', {
 
     // Updater
     checkForUpdates: () => ipcRenderer.invoke('check-for-updates'),
-    installUpdate: () => ipcRenderer.invoke('install-update'),
-    setAutoUpdate: (enabled: boolean) => ipcRenderer.invoke('set-auto-download', enabled),
     getAppVersion: () => ipcRenderer.invoke('get-app-version'),
     onUpdateAvailable: (callback: (info: any) => void) => ipcRenderer.on('update-available', (_event, info) => callback(info)),
     onUpdateNotAvailable: (callback: () => void) => ipcRenderer.on('update-not-available', callback),
-    onDownloadProgress: (callback: (percent: number) => void) => ipcRenderer.on('download-progress', (_event, percent) => callback(percent)),
-    onUpdateDownloaded: (callback: (info: any) => void) => ipcRenderer.on('update-downloaded', (_event, info) => callback(info)),
     onUpdateError: (callback: (error: string) => void) => ipcRenderer.on('update-error', (_event, error) => callback(error)),
 });
 

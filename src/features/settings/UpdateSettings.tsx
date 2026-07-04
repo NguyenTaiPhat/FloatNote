@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Download, RefreshCw, CheckCircle, AlertCircle, Package } from 'lucide-react';
+import { Download, RefreshCw, CheckCircle, AlertCircle, Package, ExternalLink } from 'lucide-react';
 import { Button } from '@shared/Button';
 import { useTranslation } from '@lib/i18n';
 import { cn } from '@lib/utils';
+import { openExternal } from '@lib/external-link';
 
-type UpdateStatus = 'idle' | 'checking' | 'available' | 'not-available' | 'downloading' | 'downloaded' | 'error';
+type UpdateStatus = 'idle' | 'checking' | 'available' | 'not-available' | 'error';
 
 interface UpdateInfo {
     version: string;
@@ -17,19 +18,11 @@ export function UpdateSettings() {
     const [status, setStatus] = useState<UpdateStatus>('idle');
     const [currentVersion, setCurrentVersion] = useState<string>('1.0.0');
     const [updateInfo, setUpdateInfo] = useState<UpdateInfo | null>(null);
-    const [autoUpdate, setAutoUpdate] = useState<boolean>(true);
-    const [downloadProgress, setDownloadProgress] = useState<number>(0);
     const [error, setError] = useState<string>('');
 
     useEffect(() => {
         // Load current version
         loadCurrentVersion();
-
-        // Load auto-update preference
-        const savedAutoUpdate = localStorage.getItem('autoUpdate');
-        if (savedAutoUpdate !== null) {
-            setAutoUpdate(JSON.parse(savedAutoUpdate));
-        }
 
         // Setup updater event listeners
         setupUpdaterListeners();
@@ -61,18 +54,6 @@ export function UpdateSettings() {
             setUpdateInfo(null);
         });
 
-        // Download progress
-        window.electron.onDownloadProgress?.((progress: number) => {
-            setStatus('downloading');
-            setDownloadProgress(progress);
-        });
-
-        // Update downloaded
-        window.electron.onUpdateDownloaded?.((info: UpdateInfo) => {
-            setStatus('downloaded');
-            setUpdateInfo(info);
-        });
-
         // Update error
         window.electron.onUpdateError?.((errorMsg: string) => {
             setStatus('error');
@@ -90,19 +71,8 @@ export function UpdateSettings() {
         }
     };
 
-    const handleInstallUpdate = () => {
-        if (window.electron?.installUpdate) {
-            window.electron.installUpdate();
-        }
-    };
-
-    const handleAutoUpdateToggle = (enabled: boolean) => {
-        setAutoUpdate(enabled);
-        localStorage.setItem('autoUpdate', JSON.stringify(enabled));
-
-        if (window.electron?.setAutoUpdate) {
-            window.electron.setAutoUpdate(enabled);
-        }
+    const handleGoToReleases = () => {
+        openExternal('https://github.com/NguyenTaiPhat/FloatNote/releases/latest');
     };
 
     const getStatusIcon = () => {
@@ -110,12 +80,9 @@ export function UpdateSettings() {
             case 'checking':
                 return <RefreshCw size={20} className="text-primary animate-spin" />;
             case 'available':
-            case 'downloaded':
                 return <Download size={20} className="text-green-500" />;
             case 'not-available':
                 return <CheckCircle size={20} className="text-green-500" />;
-            case 'downloading':
-                return <Download size={20} className="text-primary animate-pulse" />;
             case 'error':
                 return <AlertCircle size={20} className="text-red-500" />;
             default:
@@ -128,15 +95,11 @@ export function UpdateSettings() {
             case 'checking':
                 return t.settings.checkingForUpdates;
             case 'available':
-                return t.settings.updateAvailable;
+                return 'New version available! Click below to download.';
             case 'not-available':
                 return t.settings.updateNotAvailable;
-            case 'downloading':
-                return `${t.settings.downloadingUpdate} ${Math.round(downloadProgress)}%`;
-            case 'downloaded':
-                return t.settings.updateDownloaded;
             case 'error':
-                return error || 'Update error occurred';
+                return error || 'Update check failed';
             default:
                 return '';
         }
@@ -173,16 +136,24 @@ export function UpdateSettings() {
                 </div>
 
                 {/* Update Available Info */}
-                {(status === 'available' || status === 'downloaded') && updateInfo && (
-                    <div className="p-3 bg-surface rounded-lg mb-4">
+                {(status === 'available') && updateInfo && (
+                    <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg mb-4">
+                        <div className="flex items-center gap-2 mb-2">
+                            <CheckCircle size={20} className="text-green-500" />
+                            <span className="text-sm font-medium text-green-500">
+                                New version available!
+                            </span>
+                        </div>
                         <div className="flex items-center justify-between mb-2">
                             <span className="text-sm font-medium text-text-secondary">
-                                {t.settings.latestVersion}
+                                {t.settings.currentVersion}: {currentVersion}
                             </span>
-                            <span className="text-sm font-bold text-primary">{updateInfo.version}</span>
+                            <span className="text-sm font-bold text-primary">
+                                Latest: {updateInfo.version}
+                            </span>
                         </div>
                         {updateInfo.releaseNotes && (
-                            <div className="mt-3 pt-3 border-t border-border">
+                            <div className="mt-3 pt-3 border-t border-border/50">
                                 <p className="text-xs font-medium text-text-secondary mb-2">
                                     {t.settings.releaseNotes}
                                 </p>
@@ -194,64 +165,23 @@ export function UpdateSettings() {
                     </div>
                 )}
 
-                {/* Download Progress */}
-                {status === 'downloading' && (
-                    <div className="mb-4">
-                        <div className="h-2 bg-surface rounded-full overflow-hidden">
-                            <div
-                                className="h-full bg-primary transition-all duration-300"
-                                style={{ width: `${downloadProgress}%` }}
-                            />
-                        </div>
-                    </div>
-                )}
-
                 {/* Action Buttons */}
                 <div className="flex gap-2">
                     <Button
                         onClick={handleCheckForUpdates}
-                        disabled={status === 'checking' || status === 'downloading'}
-                        variant="primary"
+                        disabled={status === 'checking'}
+                        variant="secondary"
                     >
                         <RefreshCw size={16} className={cn('mr-2', status === 'checking' && 'animate-spin')} />
                         {t.settings.checkForUpdates}
                     </Button>
 
-                    {status === 'downloaded' && (
-                        <Button onClick={handleInstallUpdate} variant="primary">
-                            <Download size={16} className="mr-2" />
-                            {t.settings.installUpdate}
+                    {(status === 'available') && (
+                        <Button onClick={handleGoToReleases} variant="primary">
+                            <ExternalLink size={16} className="mr-2" />
+                            Download from GitHub
                         </Button>
                     )}
-                </div>
-            </div>
-
-            {/* Auto Update Setting */}
-            <div className="glass p-4 rounded-xl">
-                <div className="flex items-center justify-between gap-4">
-                    <div className="flex items-start gap-3 flex-1">
-                        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary">
-                            <Download size={20} />
-                        </div>
-                        <div className="flex-1">
-                            <h4 className="font-medium text-text-primary mb-1">{t.settings.autoUpdate}</h4>
-                            <p className="text-sm text-text-secondary">{t.settings.autoUpdateDesc}</p>
-                        </div>
-                    </div>
-                    <button
-                        onClick={() => handleAutoUpdateToggle(!autoUpdate)}
-                        className={cn(
-                            'relative w-12 h-6 rounded-full transition-colors flex-shrink-0',
-                            autoUpdate ? 'bg-primary' : 'bg-surface-hover'
-                        )}
-                    >
-                        <div
-                            className={cn(
-                                'absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-md transition-transform',
-                                autoUpdate ? 'translate-x-6' : 'translate-x-0.5'
-                            )}
-                        />
-                    </button>
                 </div>
             </div>
 
@@ -263,8 +193,8 @@ export function UpdateSettings() {
                 </h4>
                 <ul className="text-sm text-text-secondary space-y-1">
                     <li>• Updates are checked automatically when app starts</li>
-                    <li>• Downloads happen in the background</li>
-                    <li>• App restart required to install updates</li>
+                    <li>• Click "Download from GitHub" to get the latest version</li>
+                    <li>• Download and install the new version manually</li>
                     <li>• Your data is safe during updates</li>
                 </ul>
             </div>
